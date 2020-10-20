@@ -47,7 +47,8 @@ def main():
     assert args.image_size in minibatch_per_gpu_train, 'Invalid image size'
     batch_size = minibatch_per_gpu_train.get(args.image_size) * args.num_gpus
     batch_size_test = minibatch_per_gpu_test.get(args.image_size) * args.num_gpus
-    train.max_iters = int(total_kimgs.get(args.image_size) * 1000 / batch_size)
+    #train.max_iters = int(total_kimgs.get(args.image_size) * 1000 / batch_size)
+    train.max_iters = int(total_kimgs.get(args.image_size) * 31 / batch_size)
     kwargs = EasyDict(train)
     kwargs.update(Encoder_args=Encoder, E_opt_args=E_opt, D_opt_args=D_opt, E_loss_args=E_loss, D_loss_args=D_loss, lr_args=lr)
     kwargs.update(dataset_args=Data_dir, decoder_pkl=Decoder_pkl, tf_config=tf_config)
